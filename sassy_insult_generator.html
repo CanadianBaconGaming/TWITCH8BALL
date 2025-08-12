@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sassy Stream Oracle</title>
+<style>
+    html,body{height:100%;margin:0;padding:0}
+    body {
+        background: rgba(0,0,0,0);
+        color: white;
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        font-size: 48px;
+        padding: 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    #card{
+        max-width: 1600px;
+        width: 90%;
+        padding: 30px 40px;
+        border-radius: 18px;
+        background: rgba(0,0,0,0.35);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+        backdrop-filter: blur(4px);
+    }
+    #response{
+        line-height:1.05;
+        text-wrap: balance;
+    }
+    .small{font-size:24px;opacity:0.8}
+</style>
+</head>
+<body>
+<div id="card">
+  <div id="response">Loading...</div>
+  <div class="small">(auto-refreshing answers — or refresh the page to trigger)</div>
+</div>
+
+<script>
+const responses = [
+"Ask again when I care.",
+"Outlook hazy, like your decision-making.",
+"Yes… but only in an alternate timeline where you’re cool.",
+"Don’t count on it, cupcake.",
+"Sure, and unicorns pay my rent.",
+"Absolutely. Said no one ever.",
+"Ask again later… I’m busy ignoring you.",
+"Better not tell you now. You’d cry.",
+"Signs point to yes… but so does your forehead.",
+"Without a doubt — except for all the doubts.",
+"As likely as you going to the gym.",
+"Yes, if you can spell ‘yes’ without help.",
+"100%… if 100% means ‘not at all’.",
+"Did you really need to ask that?",
+"You wish.",
+"Don’t quit your daydream.",
+"Not even with cheat codes.",
+"This is the hill you’re dying on?",
+"Sure, Jan.",
+"You couldn’t handle the truth.",
+"I’d say yes, but I like lying to you.",
+"I rolled a D20… it’s a critical nope.",
+"Maybe if you were taller.",
+"Let me ask my manager… oh wait, I’m in charge. No.",
+"Yes… but it’ll cost you your dignity.",
+"Not unless pigs start moonwalking.",
+"Does a fish ride a bicycle? Exactly.",
+"Sure thing, sport.",
+"Nah, bruh.",
+"Even Google doesn’t know.",
+"HAHAHAHAHA. No.",
+"Only if you clap twice and spin in a circle.",
+"Hold on, let me check… *laughs in disbelief*",
+"That’s a solid maybe wrapped in a nope.",
+"I could answer… but it’s funnier not to.",
+"Ask Siri, I’m on break.",
+"Ask again when you’re interesting.",
+"Keep dreaming.",
+"Let’s pretend I didn’t hear that.",
+"That’s cute.",
+"And how long have you been wrong?",
+"Sweet summer child… no.",
+"I love the confidence. Wrong, but I love it.",
+"Hard pass.",
+"If by yes you mean no, then yes.",
+"You’re adorable when you’re confused.",
+"One day you’ll get a yes. Today is not that day.",
+"Let me consult the voices… they all say no.",
+"You couldn’t be more wrong if you tried.",
+"Yes — if your definition of yes is broken.",
+"I’ve met rocks with better ideas.",
+"My disappointment is immeasurable.",
+"Wow. Just wow.",
+"I hope that was a joke.",
+"Sure… in your dreams.",
+"I’d answer, but you’d just mess it up.",
+"You must be fun at parties. No.",
+"Try again after coffee.",
+"I’d say yes, but that would make you happy.",
+"You’re cute when you’re wrong.",
+"I've seen smarter goldfish.",
+"Your aim is worse than stormtroopers.",
+"Congratulations, you played yourself.",
+"You bring down the average IQ of the room.",
+"I've had better conversations with a toaster.",
+"Even Google can't help you.",
+"You're like a cloud. When you disappear, it's a beautiful day.",
+"Your Twitch chat messages are speed bumps in a conversation.",
+"You’re proof that evolution can go in reverse.",
+"Your plan is as solid as wet tissue.",
+"I’d explain, but I left my patience in 2007.",
+"If ignorance is bliss, you must be ecstatic.",
+"You’re the human equivalent of a participation trophy.",
+"Plot twist: you’re still wrong.",
+"I’d roast you but rules say no arson.",
+"Please never quit your day job—because that job is surviving.",
+"You're the reason we have warning labels.",
+"You have the charisma of a damp sock.",
+"On a scale from one to even, you’re zero.",
+"Your brain has too many tabs open—and none of them load.",
+"I’d call you an idiot but that would be an insult to idiots.",
+"You are proof that nature loves a prank.",
+"Your argument crashed and refused to reboot.",
+"I've seen salads with more backbone than you.",
+"That idea retired years ago.",
+"Your brain cell count is trending downwards.",
+"You're about as useful as a screen door on a submarine.",
+"You couldn't pour water out of a boot if the instructions were on the heel.",
+"You're like software with 1-star reviews.",
+"You're a day late and a meme short.",
+"You're the human version of a typo.",
+"Your confidence is impressive—sadly misplaced.",
+"You have the subtlety of a brick.",
+"Your life must be a constant 'did I do that?' moment.",
+"You'd struggle to pour water out of a boot with both hands.",
+"I admire your commitment to being wrong.",
+"If I wanted to hear from an idiot, I'd tune into reality TV.",
+"Have you considered being less wrong? It's a start.",
+"Your thoughts are on backorder.",
+"You are the human equivalent of static.",
+"Error 404: Correct answer not found.",
+"Your logic took a day off and never came back."
+];
+
+function newResponse() {
+  const random = Math.floor(Math.random() * responses.length);
+  const el = document.getElementById('response');
+  el.textContent = responses[random];
+  // quick entrance animation
+  el.style.opacity = 0;
+  el.style.transform = 'scale(0.95)';
+  setTimeout(()=>{ el.style.transition='all 350ms cubic-bezier(.2,.9,.2,1)'; el.style.opacity=1; el.style.transform='scale(1)'; },10);
+}
+
+// initial
+newResponse();
+// change every 5 seconds (adjust as needed)
+setInterval(newResponse, 5000);
+</script>
+</body>
+</html>
